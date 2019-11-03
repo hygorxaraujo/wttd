@@ -1,0 +1,49 @@
+version: '3'
+services:
+  web:
+    restart: always
+    build:
+      context: .
+      dockerfile: Dockerfile
+    expose:
+      - 8000
+    environment:
+      - SECRET_KEY=$SECRET_KEY
+      - DEBUG=$DEBUG
+      - DB_USER=$DB_USER
+      - DB_PASSWORD=$DB_PASSWORD
+      - DB_NAME=$DB_NAME
+      - DB_HOST=$DB_HOST
+    volumes:
+      - .:/home/wttd
+      - eventex-static:/home/wttd/staticfiles
+    depends_on:
+      - db
+    links:
+      - db:db
+    command: ["gunicorn", "--bind", ":8000", "--log-file", "-", "-w", "4", "eventex.wsgi"]
+  db:
+    restart: always
+    image: postgres:12-alpine
+    volumes:
+      - eventex-db:/var/lib/postgresql/data
+    ports:
+      - 5432:5432
+    environment:
+      - POSTGRES_USER=$DB_USER
+      - POSTGRES_PASSWORD=$DB_PASSWORD
+      - POSTGRES_DB=$DB_NAME
+  nginx:
+    restart: always
+    build:
+      context: ./nginx
+    ports:
+      - 80:80
+    volumes:
+      - eventex-static:/home/app/web/staticfiles
+    depends_on:
+      - web
+
+volumes:
+  eventex-db:
+  eventex-static:
