@@ -19,3 +19,4 @@ RUN chown -R wttd:wttd ./
 USER wttd
 
 ENTRYPOINT ["/home/wttd/entrypoint.sh"]
+CMD ["gunicorn", "--bind", ":8000", "--log-file", "-", "-w", "4", "eventex.wsgi"]

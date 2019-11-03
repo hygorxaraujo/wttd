@@ -4,7 +4,7 @@ services:
     restart: always
     build:
       context: .
-      dockerfile: Dockerfile
+      dockerfile: Dockerfile.web
     expose:
       - 8000
     environment:
@@ -37,6 +37,7 @@ services:
     restart: always
     build:
       context: ./nginx
+      dockerfile: Dockerfile.nginx
     ports:
       - 80:80
     volumes:
