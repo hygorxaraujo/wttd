@@ -13,3 +13,8 @@ whitenoise = "*"
 
 [requires]
 python_version = "3.8"
+
+[scripts]
+up = "docker-compose up --build -d"
+down = "docker-compose down -v"
+tests = "docker-compose run --rm web python manage.py test"
