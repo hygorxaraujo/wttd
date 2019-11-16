@@ -17,10 +17,11 @@ $ pipenv install --dev
 
 ## Running
 
-- Start: `docker-compose up --build -d`
+- Start: `pipenv run up`
 - Access: [http://localhost/](http://localhost/)
-- Stop: `docker-compose down -v`
+- Stop: `pipenv run down`
+- Test (start first): `pipenv run tests` 
 
 ## Deploy
 
-Automatic deploy to Heroku on [https://eventex-hygor.herokuapp.com/](https://eventex-hygor.herokuapp.com/).
+Automatic deploy to Heroku on [https://eventex-hygor.herokuapp.com/](https://eventex-hygor.herokuapp.com/) after each commit to `master`.
