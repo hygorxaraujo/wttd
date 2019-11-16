@@ -27,6 +27,8 @@ DEBUG = strtobool(os.getenv('DEBUG', 'False'))
 
 ALLOWED_HOSTS = os.getenv('ALLOWED_HOSTS', '127.0.0.1,.localhost').split(',')
 
+DEFAULT_FROM_EMAIL = 'contato@eventex.com.br'
+
 # Application definition
 
 INSTALLED_APPS = [

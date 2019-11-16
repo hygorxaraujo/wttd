@@ -2,20 +2,35 @@
 
 Eventex project for the Welcome to the Django course.
 
-## Dependencies
+## Develop
+
+### Dependencies
 
 1. [Python 3.8](https://www.python.org/downloads/)
 2. [Pipenv](https://pipenv-fork.readthedocs.io/en/latest/)
 3. [Docker](https://docs.docker.com/v17.12/install/)
 4. [docker-compose](https://docs.docker.com/compose/install/)
 
-## Setup
+### Setup
 
-```bash
-$ pipenv install --dev
+1. Clone the repository
+2. Create an environment with pipenv
+3. Start a shell with the created environment
+4. Configure the environment variables with the .env
+5. Start the application
+6. Run the tests
+
+```console
+git clone git@github.com:hygorxaraujo/wttd.git wttd
+cd wttd
+pipenv install --dev
+pipenv shell
+cp contrib/.env.template .env
+pipenv run up
+pipenv run tests
 ```
 
-## Running
+### Running
 
 - Start: `pipenv run up`
 - Access: [http://localhost/](http://localhost/)
@@ -23,5 +38,27 @@ $ pipenv install --dev
 - Test (start first): `pipenv run tests` 
 
 ## Deploy
+This repository is already configured with an automatic deploy.
+After each commit to `master`, the deploy is started to Heroku on [https://eventex-hygor.herokuapp.com/](https://eventex-hygor.herokuapp.com/).
 
-Automatic deploy to Heroku on [https://eventex-hygor.herokuapp.com/](https://eventex-hygor.herokuapp.com/) after each commit to `master`.
+### Dependencies
+1. [heroku-cli](https://devcenter.heroku.com/articles/heroku-cli#download-and-install)
+
+### Setup and deploy
+1. Setup an instance in Heroku
+2. Send configurations to Heroku
+3. Define a safe SECRET_KEY for the instance
+4. Define DEBUG=False
+5. Define the stack as container
+6. Configure the email service
+7. Send the code to heroku
+
+```console
+heroku create myeventex
+heroku config:push
+heroku config:set SECRET_KEY=`python contrib/secret_gen.py`
+heroku config:set DEBUG=False
+heroku stack:set container
+# configure email
+git push heroku master --force
+```
