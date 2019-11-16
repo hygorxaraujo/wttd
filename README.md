@@ -2,6 +2,8 @@
 
 Eventex project for the Welcome to the Django course.
 
+[![Build Status](https://travis-ci.org/hygorxaraujo/wttd.svg?branch=master)](https://travis-ci.org/hygorxaraujo/wttd)
+
 ## Develop
 
 ### Dependencies
