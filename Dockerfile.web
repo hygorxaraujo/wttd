@@ -15,7 +15,7 @@ COPY eventex eventex
 COPY manage.py entrypoint.sh ./
 RUN chmod +x entrypoint.sh
 
-RUN chown -R wttd:wttd ./
+RUN chown -R wttd:wttd $APP_HOME
 USER wttd
 
 ENTRYPOINT ["/home/wttd/entrypoint.sh"]
