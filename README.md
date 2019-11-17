@@ -3,6 +3,8 @@
 Eventex project for the Welcome to the Django course.
 
 [![Build Status](https://travis-ci.org/hygorxaraujo/wttd.svg?branch=master)](https://travis-ci.org/hygorxaraujo/wttd)
+[![Maintainability](https://api.codeclimate.com/v1/badges/95cd755c89262bfcac7e/maintainability)](https://codeclimate.com/github/hygorxaraujo/wttd/maintainability)
+[![Test Coverage](https://api.codeclimate.com/v1/badges/95cd755c89262bfcac7e/test_coverage)](https://codeclimate.com/github/hygorxaraujo/wttd/test_coverage)
 
 ## Develop
 

@@ -9,7 +9,7 @@ RUN apk update && apk add --no-cache postgresql-dev gcc musl-dev
 
 RUN pip install pipenv
 COPY Pipfile Pipfile.lock ./
-RUN pipenv install --system --deploy --ignore-pipfile
+RUN pipenv install --system --deploy --ignore-pipfile --dev
 
 COPY eventex eventex
 COPY manage.py entrypoint.sh ./
