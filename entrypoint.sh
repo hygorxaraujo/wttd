@@ -7,6 +7,7 @@ while ! nc -z $DB_HOST 5432; do
   sleep 3s
 done
 
+python manage.py migrate
 python manage.py collectstatic --no-input --clear -v 0
 
 exec "$@"

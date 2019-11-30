@@ -6,6 +6,8 @@ verify_ssl = true
 [dev-packages]
 coverage = "*"
 jupyter = "*"
+cython = "*"
+pygraphviz = "*"
 
 [packages]
 django = "*"

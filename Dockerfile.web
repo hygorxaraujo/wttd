@@ -5,7 +5,7 @@ ENV APP_HOME=/home/wttd
 RUN mkdir $APP_HOME/staticfiles
 WORKDIR $APP_HOME
 
-RUN apk update && apk add --no-cache postgresql-dev gcc musl-dev
+RUN apk update && apk add --no-cache postgresql-dev g++ linux-headers zeromq-dev graphviz-dev ttf-freefont
 
 RUN pip install pipenv
 COPY Pipfile Pipfile.lock ./
