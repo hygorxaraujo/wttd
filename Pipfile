@@ -5,12 +5,14 @@ verify_ssl = true
 
 [dev-packages]
 coverage = "*"
+jupyter = "*"
 
 [packages]
 django = "*"
 gunicorn = "*"
 psycopg2-binary = "*"
 whitenoise = "*"
+django-extensions = "*"
 
 [requires]
 python_version = "3.8"
@@ -20,4 +22,3 @@ up = "docker-compose up --build -d"
 down = "docker-compose down -v"
 tests = "docker-compose run --rm web python manage.py test"
 coverage = "docker-compose run --rm web sh -c \"coverage run --source='.' manage.py test && coverage report\""
-
