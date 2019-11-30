@@ -142,3 +142,4 @@ dmypy.json
 .ash_history
 .local/
 *.png
+staticfiles/*
