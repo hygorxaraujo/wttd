@@ -85,6 +85,9 @@ DATABASES = {
         'USER': os.getenv('DB_USER'),
         'PASSWORD': os.getenv('DB_PASSWORD'),
         'PORT': os.getenv('DB_PORT'),
+        'TEST': {
+            'NAME': 'eventex_test'
+        },
     }
 }
 
