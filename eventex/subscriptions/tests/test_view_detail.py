@@ -12,7 +12,7 @@ class SubscriptionDetailGet(TestCase):
             email='contact@hygorxaraujo.com',
             phone='(32) 91111-2222',
         )
-        self.resp = self.client.get(f'/inscricao/{self.sub.pk}/')
+        self.resp = self.client.get(f'/inscricao/{self.sub.uid}/')
 
     def test_get(self):
         self.assertEqual(200, self.resp.status_code)
@@ -34,5 +34,5 @@ class SubscriptionDetailGet(TestCase):
 class SubscriptionDetailNotFound(TestCase):
 
     def test_not_found(self):
-        resp = self.client.get('/inscricao/0/')
+        resp = self.client.get('/inscricao/702beb91-3ac5-4993-9928-2a1dfe12fd32/')
         self.assertEqual(404, resp.status_code)

@@ -28,7 +28,7 @@ def _create(request):
                 'subscriptions/subscription_email.txt',
                 {'subscription': sub})
 
-    return HttpResponseRedirect(f'/inscricao/{sub.pk}/')
+    return HttpResponseRedirect(f'/inscricao/{sub.uid}/')
 
 
 def _new(request):
@@ -40,9 +40,9 @@ def _send_email(subject, from_, to, template_name, context):
     mail.send_mail(subject, body, from_, [from_, to])
 
 
-def detail(request, pk):
+def detail(request, uid):
     try:
-        subscription = Subscription.objects.get(pk=pk)
+        subscription = Subscription.objects.get(uid=uid)
     except Subscription.DoesNotExist:
         raise Http404
 
