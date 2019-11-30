@@ -29,7 +29,7 @@ services:
       - db
     links:
       - db:db
-    command: ["gunicorn", "--bind", ":8000", "--log-file", "-", "-w", "4", "eventex.wsgi"]
+    command: ["gunicorn", "--bind", ":8000", "--reload", "--log-file", "-", "-w", "4", "eventex.wsgi"]
   db:
     restart: always
     image: postgres:12-alpine
