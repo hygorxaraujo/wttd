@@ -26,9 +26,25 @@ class SubscriptionFormTest(TestCase):
         form = self.make_validated_form(cpf='11111111111')
         self.assertFormErrorCode(form, 'cpf', 'repeated')
 
-    def test_name_is_capitalized(self):
+    def test_name_must_be_capitalized(self):
+        """Name must be capitalized."""
         form = self.make_validated_form(name='HYGOR araújo')
         self.assertEqual('Hygor Araújo', form.cleaned_data['name'])
+
+    def test_email_is_optional(self):
+        """Email is optional."""
+        form = self.make_validated_form(email='')
+        self.assertFalse(form.errors)
+
+    def test_phone_is_optional(self):
+        """Phone is optional."""
+        form = self.make_validated_form(phone='')
+        self.assertFalse(form.errors)
+
+    def test_must_inform_email_or_phone(self):
+        """Email and Phone are optional, but one must be informed."""
+        form = self.make_validated_form(email='', phone='')
+        self.assertListEqual(['__all__'], list(form.errors))
 
     def make_validated_form(self, **kwargs):
         valid = dict(name='Hygor Araújo', cpf='12345678901',
