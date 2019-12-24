@@ -39,7 +39,8 @@ pipenv run tests
 - Start: `pipenv run up`
 - Access: [http://localhost/](http://localhost/)
 - Stop: `pipenv run down`
-- Test: `pipenv run tests` 
+- Test: `pipenv run tests`
+- Make migrations: `pipenv run makemigrations`
 
 ## Deploy
 This repository is already configured with an automatic deploy.
