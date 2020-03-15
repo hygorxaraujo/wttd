@@ -36,3 +36,6 @@ class HomeTest(TestCase):
 
     def test_speakers_link(self):
         self.assertContains(self.response, f"href=\"{r('home')}#speakers\"")
+
+    def test_talks_link(self):
+        self.assertContains(self.response, f"href=\"{r('talk_list')}\"")
