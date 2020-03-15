@@ -21,7 +21,8 @@ python_version = "3.8"
 
 [scripts]
 up = "docker-compose up --build -d"
-down = "docker-compose down -v"
+down = "docker-compose down"
+down-v = "docker-compose down -v"
 tests = "docker-compose exec web python manage.py test"
 makemigrations = "docker-compose exec web python manage.py makemigrations"
 manage = "docker-compose exec web python manage.py"
