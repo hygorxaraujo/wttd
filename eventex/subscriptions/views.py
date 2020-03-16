@@ -1,49 +1,18 @@
-from django.conf import settings
-from django.core import mail
-from django.http import HttpResponseRedirect, Http404
-from django.shortcuts import render, resolve_url as r
-from django.template.loader import render_to_string
+from django.views.generic import DetailView
 
 from eventex.subscriptions.forms import SubscriptionForm
+from eventex.subscriptions.mixins import EmailCreateView
 from eventex.subscriptions.models import Subscription
 
-
-def new(request):
-    if request.method == 'POST':
-        return _create(request)
-    return empty_form(request)
+new = EmailCreateView.as_view(model=Subscription,
+                              form_class=SubscriptionForm,
+                              email_subject='Confirmação de inscrição', )
 
 
-def empty_form(request):
-    return render(request, 'subscriptions/subscription_form.html', {'form': SubscriptionForm()})
+class Detail(DetailView):
+    model = Subscription
+    slug_field = 'uid'
+    slug_url_kwarg = 'uid'
 
 
-def _create(request):
-    form = SubscriptionForm(request.POST)
-    if not form.is_valid():
-        return render(request, 'subscriptions/subscription_form.html', {'form': form})
-
-    sub = form.save()
-
-    _send_email('Confirmação de inscrição',
-                settings.DEFAULT_FROM_EMAIL,
-                sub.email,
-                'subscriptions/subscription_email.txt',
-                {'subscription': sub})
-
-    return HttpResponseRedirect(r('subscriptions:detail', sub.uid))
-
-
-def _send_email(subject, from_, to, template_name, context):
-    body = render_to_string(template_name, context)
-    mail.send_mail(subject, body, from_, [from_, to])
-
-
-def detail(request, uid):
-    try:
-        subscription = Subscription.objects.get(uid=uid)
-    except Subscription.DoesNotExist:
-        raise Http404
-
-    return render(request, 'subscriptions/subscription_detail.html',
-                  context={'subscription': subscription})
+detail = Detail.as_view()
